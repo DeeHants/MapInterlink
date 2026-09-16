@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const urlEl = document.getElementById('url');
-  const fragEl = document.getElementById('fragment');
+  const latitudeEl = document.getElementById('latitude');
+  const longitudeEl = document.getElementById('longitude');
+
+  const googleLink = document.getElementById('googlelink');
 
   function show(url) {
     urlEl.textContent = url || 'n/a';
@@ -17,13 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
       show('n/a');
       return;
     }
-    try {
-      const u = new URL(tab.url);
-      const fullNoHash = u.origin + u.pathname + u.search;
-      // remove leading '#' from hash
-      show(tab.url);
-    } catch (e) {
-      show(tab.url);
+    const { lat, lng, zoom } = extract(tab.url);
+    if (lat && lng) {
+      latitudeEl.textContent = lat || 'n/a';
+      longitudeEl.textContent = lng || 'n/a';
+
+      googleLink.href = google_generate(lat, lng, zoom);
+
+    } else {
+      show('Unrecognized URL');
     }
   });
 });
