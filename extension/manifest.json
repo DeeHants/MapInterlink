@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "MapInterlink",
+    "version": "0.1",
+    "description": "Shows current map coordinates and links between different map websites.",
+    "permissions": [
+        "activeTab"
+    ],
+    "host_permissions": [
+        "https://www.google.com/maps/*",
+        "https://www.openstreetmap.org/*",
+        "https://maps.nls.uk/geo/*"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "URL & Fragment"
+    }
+}
