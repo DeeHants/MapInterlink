@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const osmLink = document.getElementById('osmlink');
   const nlsGeoLink = document.getElementById('nlsgeolink');
   const nlsSxsLink = document.getElementById('nlssxslink');
+  const openinframapLink = document.getElementById('openinframaplink');
 
   function show(message) {
     locationEl.textContent = message || 'n/a';
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       osmLink.href = osm_generate(lat, lng, zoom);
       nlsGeoLink.href = nls_generate_geo(lat, lng, zoom);
       nlsSxsLink.href = nls_generate_sxs(lat, lng, zoom);
+      openinframapLink.href = openinframap_generate(lat, lng, zoom);
 
     } else {
       show('Unrecognized URL');

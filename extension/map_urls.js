@@ -1,10 +1,12 @@
 extract = function (url) {
   if (google_match(url)) {
     return google_extract(url);
-  } else if (osm_match(url)) {
-    return osm_extract(url);
   } else if (nls_match(url)) {
     return nls_extract(url);
+  } else if (openinframap_match(url)) {
+    return openinframap_extract(url);
+  } else if (osm_match(url)) {
+    return osm_extract(url);
   }
   return { lat: 0, lng: 0, zoom: 0 };
 }
@@ -54,6 +56,28 @@ nls_generate_geo = function (lat, lng, zoom) {
 
 nls_generate_sxs = function (lat, lng, zoom) {
   return `https://maps.nls.uk/geo/explore/side-by-side/#zoom=${zoom}&lat=${lat}&lon=${lng}`;
+}
+
+// Open Infrastructure Map
+// https://openinframap.org/#14.63/50.86946/-1.02788
+
+openinframap_match = function (url) {
+  return url.match(/openinframap\.org/);
+}
+
+openinframap_extract = function (url) {
+  const match = url.match(/#(-?[\d.]+)\/(-?[\d.]+)\/(-?[\d.]+)/);
+  if (match) {
+    const lat = match[2];
+    const lng = match[3];
+    const zoom = parseFloat(match[1]) + 1;
+    return { lat, lng, zoom };
+  }
+}
+
+openinframap_generate = function (lat, lng, zoom) {
+  zoom -= 1;
+  return `https://openinframap.org/#${zoom}/${lat}/${lng}`;
 }
 
 // OSM

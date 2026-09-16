@@ -9,7 +9,8 @@
     "host_permissions": [
         "https://www.google.com/maps/*",
         "https://www.openstreetmap.org/*",
-        "https://maps.nls.uk/geo/*"
+        "https://maps.nls.uk/geo/*",
+        "https://openinframap.org/*"
     ],
     "action": {
         "default_popup": "popup.html",
