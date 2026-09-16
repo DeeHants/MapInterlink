@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const locationEl = document.getElementById('location');
 
   const googleLink = document.getElementById('googlelink');
+  const osmLink = document.getElementById('osmlink');
 
   function show(message) {
     locationEl.textContent = message || 'n/a';
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       locationEl.textContent = locationString;
 
       googleLink.href = google_generate(lat, lng, zoom);
+      osmLink.href = osm_generate(lat, lng, zoom);
 
     } else {
       show('Unrecognized URL');
