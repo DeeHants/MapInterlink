@@ -19,11 +19,11 @@ google_match = function (url) {
 }
 
 google_extract = function (url) {
-  const match = url.match(/@([^,]+),([^,]+),([^z]+)z/);
+  const match = url.match(/@([^,]+),([^,]+),(?:([^z]+)z)?/);
   if (match) {
     const lat = match[1];
     const lng = match[2];
-    const zoom = match[3];
+    const zoom = match[3] || 18;
     return { lat, lng, zoom };
   }
 }
